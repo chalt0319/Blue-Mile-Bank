@@ -1,0 +1,22 @@
+header {
+  background-color: aqua;
+  padding: 15px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+body {
+  margin-top: 60px;
+}
+
+.links {
+  padding-right: 10px;
+  text-decoration: none;
+  color: blue;
+}
+
+.links:hover {
+  color: black;
+}
