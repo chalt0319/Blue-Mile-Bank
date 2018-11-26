@@ -37,21 +37,25 @@ class AccountsController < ApplicationController
     @amount = params["amount"].to_i
     @bank["checking"] += @amount
     if @bank.save
-      # raise params.inspect
       redirect_to account_path(@account)
     else
-      # @account.errors.full_messages
-      # raise params.inspect
       flash[:alert] = "Something's gone wrong... Please try again."
     end
-    # render 'show'
   end
 
   def add_savings
   end
 
   def savings
-
+    @account = Account.find(params[:id])
+    @bank = Bank.find_by(account_id: params[:id])
+    @amount = params["amount"].to_i
+    @bank["savings"] += @amount
+    if @bank.save
+      redirect_to account_path(@account)
+    else
+      flash[:alert] = "Something's gone wrong... Please try again."
+    end
   end
 
   def new
