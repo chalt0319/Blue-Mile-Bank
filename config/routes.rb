@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   resources :accounts
   get '/login' => 'accounts#login'
   post '/login' => "accounts#create"
+  get '/logout' => 'accounts#logout'
+
 end

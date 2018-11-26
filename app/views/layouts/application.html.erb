@@ -10,6 +10,16 @@
   </head>
 
   <body>
+    <header>
+      <a id="home_link" class="links" href="<%=root_path%>">Home</a>
+      <%if logged_in?%>
+      <a class="links" href="<%=current_user_path%>"><%=current_user%></a>
+      <a class="links" href="<%=logout_path%>">Logout</a>
+      <%else %>
+        <a class="links" href="<%=login_path%>">Login</a>
+        <a class="links" href="<%=new_account_path%>">Sign Up</a>
+      <%end%>
+    </header>
     <% flash.each do |name, msg| -%>
        <%= content_tag :div, msg, class: name %>
     <% end -%>

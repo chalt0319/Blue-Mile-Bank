@@ -24,6 +24,11 @@ class AccountsController < ApplicationController
     @account = Account.find(params[:id])
   end
 
+  def logout
+    session[:user_id] = nil
+    redirect_to root_path
+  end
+
   private
 
   def account_params
