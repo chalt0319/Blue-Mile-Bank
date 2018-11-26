@@ -1,1 +1,8 @@
-<h1>Welcome <%=@account.name%></h1>
+<h1 class="account_id" data-id="<%=@account.id%>">Welcome <%=@account.name%></h1>
+<h3>Your Accounts:</h3>
+
+<h2>Checking: $<%=@bank.checking%></h2>
+<!-- <span class="add_money" onclick="addMoney(<%=@account.id%>)">Add Money</span> -->
+<a href="/add/<%=@account.id%>/checking">Manage Money</a>
+
+<h2>Savings: $<%=@bank.savings%></h2>

@@ -1,0 +1,7 @@
+<h1>Add Money to: </h1>
+
+<%=form_tag add_checking_path do %>
+  <%=label_tag :amount%>
+  <%=text_field_tag :amount%><br>
+  <%=submit_tag "Submit", class: "add_submit"%>
+<%end%>
