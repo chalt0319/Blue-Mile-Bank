@@ -7,8 +7,12 @@ class AccountsController < ApplicationController
   def create
     if params[:account]
       @account = Account.new(account_params)
-      @account.save
-      set_session_id
+      if @account.save
+        set_session_id
+      else
+        flash[:alert] = "Something's gone wrong... Please try again."
+        redirect_to '/new'
+      end
     end
   end
 
