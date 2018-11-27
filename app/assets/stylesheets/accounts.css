@@ -1,20 +1,31 @@
 header {
-  background-color: aqua;
+  background-color: #99d6ff;
   padding: 15px;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
+  font-family: Georgia, serif
+}
+
+#title {
+  position: absolute;
+  right: 50px;
+  font-family: fantasy;
+  font-size: 1.4em;
+  margin-top: -3px;
+  color: #005c99
 }
 
 body {
   margin-top: 60px;
+  font-family: Georgia, serif;
 }
 
 .links {
   padding-right: 10px;
   text-decoration: none;
-  color: blue;
+  color: #005c99;
 }
 
 .links:hover {
