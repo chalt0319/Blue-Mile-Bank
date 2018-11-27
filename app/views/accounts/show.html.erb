@@ -1,8 +1,12 @@
 <h1 class="account_id" data-id="<%=@account.id%>">Welcome <%=@account.name%></h1>
 <h2>Your Accounts:</h2>
 
-<h3>Checking: $<%=@bank.checking%></h3>
-<a href="/add/<%=@account.id%>/checking">Manage Money</a>
+<div class="account-box left">
+  <h3>Checking: $<%=@bank.checking%></h3>
+  <a class="manage" href="/add/<%=@account.id%>/checking">Manage Money</a>
+</div>
 
+<div class="account-box right">
 <h3>Savings: $<%=@bank.savings%></h3>
-<a href="/add/<%=@account.id%>/savings">Manage Money</a>
+<a class="manage" href="/add/<%=@account.id%>/savings">Manage Money</a>
+</div>

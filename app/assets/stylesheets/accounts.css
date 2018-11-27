@@ -31,3 +31,17 @@ body {
 .links:hover {
   color: black;
 }
+
+.account-box {
+  background-color: #d9d9d9;
+  padding-top: 3px;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 10px;
+  float: left;
+  width: 47.5%;
+}
+
+.account-box.left {
+  margin-right: 1%;
+}
