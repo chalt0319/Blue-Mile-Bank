@@ -2,22 +2,25 @@
 <h2>Your Accounts:</h2>
 
 <div class="account-box left">
-  <h3 class="account-header">Checking</h3>
+  <h2 class="account-header">Checking</h2>
   <div class="amount">
     Balance: $<%=@bank.checking%>
+
   </div>
-  <a href="/checking_history/<%=@account.id%>">View Transactions</a>
+  <div class="history-link"><a href="/checking_history/<%=@account.id%>">View Transactions</a></div>
+
   <div class="manage">
     <a href="/add/<%=@account.id%>/checking">Manage Money</a>
   </div>
 </div>
 
 <div class="account-box right">
-  <h3 class="account-header">Savings</h3>
+  <h2 class="account-header">Savings</h2>
   <div class="amount">
     Balance: $<%=@bank.savings%>
+
   </div>
-  <a class="" href="/savings_history/<%=@account.id%>">View Transactions</a>
+  <div class="history-link"><a href="/savings_history/<%=@account.id%>">View Transactions</a></div>
   <div class="manage">
     <a href="/add/<%=@account.id%>/savings">Manage Money</a>
   </div>

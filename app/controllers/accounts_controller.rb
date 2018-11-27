@@ -118,7 +118,8 @@ class AccountsController < ApplicationController
   end
 
   def savings_history
-
+    @bank = Bank.find_by(account_id: params[:id])
+    @history = @bank.savings_history
   end
 
 
