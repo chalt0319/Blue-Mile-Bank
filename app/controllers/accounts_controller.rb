@@ -29,6 +29,7 @@ class AccountsController < ApplicationController
   end
 
   def add_checking
+    render 'checking'
   end
 
   def checking
@@ -44,6 +45,7 @@ class AccountsController < ApplicationController
   end
 
   def add_savings
+    render 'savings'
   end
 
   def savings
@@ -57,6 +59,31 @@ class AccountsController < ApplicationController
       flash[:alert] = "Something's gone wrong... Please try again."
     end
   end
+
+  def sub_checking
+    @account = Account.find(params[:id])
+    @bank = Bank.find_by(account_id: params[:id])
+    @amount = params["amount"].to_i
+    @bank["checking"] -= @amount
+    if @bank.save
+      redirect_to account_path(@account)
+    else
+      flash[:alert] = "Something's gone wrong... Please try again."
+    end
+  end
+
+  def sub_savings
+    @account = Account.find(params[:id])
+    @bank = Bank.find_by(account_id: params[:id])
+    @amount = params["amount"].to_i
+    @bank["savings"] -= @amount
+    if @bank.save
+      redirect_to account_path(@account)
+    else
+      flash[:alert] = "Something's gone wrong... Please try again."
+    end
+  end
+
 
   def new
     @account = Account.new

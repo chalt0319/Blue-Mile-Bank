@@ -1,0 +1,15 @@
+<h1>Add Money to Savings Account </h1>
+
+<h3>Add Money</h3>
+<%=form_tag add_savings_path do %>
+  <%=label_tag :amount%>
+  <%=text_field_tag :amount%><br>
+  <%=submit_tag "Submit", class: "add_submit"%>
+<%end%>
+
+<h3>Remove Money</h3>
+<%=form_tag sub_savings_path do %>
+  <%=label_tag :amount%>
+  <%=text_field_tag :amount%><br>
+  <%=submit_tag "Submit", class: "sub_submit"%>
+<%end%>

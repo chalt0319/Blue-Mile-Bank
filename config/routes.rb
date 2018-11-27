@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   get '/add/:id/savings' => 'accounts#add_savings'
   post '/add_savings/:id' => 'accounts#savings', :as => :add_savings
 
+  post '/sub_checking/:id' => 'accounts#sub_checking', :as => :sub_checking
+
+  post '/sub_savings/:id' => 'accounts#sub_savings', :as => :sub_savings
+
 
 
 
