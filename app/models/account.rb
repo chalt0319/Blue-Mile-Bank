@@ -4,4 +4,5 @@ class Account < ApplicationRecord
   validates :name, uniqueness: true
   validates :password, presence: true
 
+
 end

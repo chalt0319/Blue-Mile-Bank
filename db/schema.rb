@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_26_201334) do
+ActiveRecord::Schema.define(version: 2018_11_27_221655) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "name"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 2018_11_26_201334) do
     t.integer "savings", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "checking_history"
+    t.text "savings_history"
   end
 
 end

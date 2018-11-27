@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   post '/sub_savings/:id' => 'accounts#sub_savings', :as => :sub_savings
 
+  get '/checking_history/:id' => 'accounts#checking_history', :as => :checking_history
+  get '/savings_history/:id' => 'accounts#savings_history', :as => :savings_history
 
 
 

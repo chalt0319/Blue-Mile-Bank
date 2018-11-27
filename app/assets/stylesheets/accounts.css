@@ -35,13 +35,33 @@ body {
 .account-box {
   background-color: #d9d9d9;
   padding-top: 3px;
-  padding-left: 20px;
+  padding-left: 1.5%;
+  padding-right: 1.5%;
   padding-bottom: 20px;
   margin-bottom: 10px;
   float: left;
-  width: 47.5%;
+  width: 46.2%;
 }
 
 .account-box.left {
   margin-right: 1%;
+}
+
+.account-header {
+  text-align: center;
+  background-color: #a6a6a6;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.manage {
+  margin-top: 10px;
+}
+
+.amount {
+  font-size: 1.5em;
+}
+
+.history {
+  padding: 10px;
 }
