@@ -40,8 +40,11 @@ class AccountsController < ApplicationController
     if @bank.save
       t = @bank.updated_at
       @time = t.strftime("%c")
-      @bank.checking_history.push("+ $#{@amount} on #{@time}")
+      @message = params["message"]
+      @history = History.new(account_id: @account.id, date: @time, amount: @amount, message: @message, checking: true, add: true)
+      # @bank.checking_history.push("+ $#{@amount} on #{@time}")
       @bank.save
+      @history.save
       redirect_to account_path(@account)
     else
       flash[:alert] = "Something's gone wrong... Please try again."
@@ -60,8 +63,11 @@ class AccountsController < ApplicationController
     if @bank.save
       t = @bank.updated_at
       @time = t.strftime("%c")
-      @bank.savings_history.push("+ $#{@amount} on #{@time}")
+      @message = params["message"]
+      @history = History.new(account_id: @account.id, date: @time, amount: @amount, message: @message, savings: true, add: true)
+      # @bank.savings_history.push("+ $#{@amount} on #{@time}")
       @bank.save
+      @history.save
       redirect_to account_path(@account)
     else
       flash[:alert] = "Something's gone wrong... Please try again."
@@ -77,8 +83,11 @@ class AccountsController < ApplicationController
       if @bank.save
         t = @bank.updated_at
         @time = t.strftime("%c")
-        @bank.checking_history.push("- $#{@amount} on #{@time}")
+        @message = params["message"]
+        @history = History.new(account_id: @account.id, date: @time, amount: @amount, message: @message, checking: true, add: false)
+        # @bank.checking_history.push("- $#{@amount} on #{@time}")
         @bank.save
+        @history.save
         redirect_to account_path(@account)
       else
         flash[:alert] = "Something's gone wrong... Please try again."
@@ -99,8 +108,11 @@ class AccountsController < ApplicationController
       if @bank.save
         t = @bank.updated_at
         @time = t.strftime("%c")
-        @bank.savings_history.push("- $#{@amount} on #{@time}")
+        @message = params["message"]
+        @history = History.new(account_id: @account.id, date: @time, amount: @amount, message: @message, checking: false, add: false)
+        # @bank.savings_history.push("- $#{@amount} on #{@time}")
         @bank.save
+        @history.save
         redirect_to account_path(@account)
       else
         flash[:alert] = "Something's gone wrong... Please try again."
@@ -113,8 +125,8 @@ class AccountsController < ApplicationController
   end
 
   def checking_history
-    @bank = Bank.find_by(account_id: params[:id])
-    @history = @bank.checking_history
+    @account = Account.find(params[:id])
+    @histories = @account.histories
   end
 
   def savings_history

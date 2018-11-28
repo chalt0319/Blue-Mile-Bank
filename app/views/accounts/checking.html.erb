@@ -3,13 +3,17 @@
 <h3>Add Money</h3>
 <%=form_tag add_checking_path do %>
   <%=label_tag :amount%>
-  <%=text_field_tag :amount%><br>
+  <%=text_field_tag :amount%>
+  <%=label_tag :message%>
+  <%=text_field_tag :message%><br>
   <%=submit_tag "Submit", class: "add_submit"%>
 <%end%>
 
 <h3>Remove Money</h3>
 <%=form_tag sub_checking_path do %>
   <%=label_tag :amount%>
-  <%=text_field_tag :amount%><br>
+  <%=text_field_tag :amount%>
+  <%=label_tag :message%>
+  <%=text_field_tag :message%><br>
   <%=submit_tag "Submit", class: "sub_submit"%>
 <%end%>

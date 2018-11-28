@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  checking: false
+  savings: false
+  date: MyString
+  amount: 1
+  message: MyString
+
+two:
+  checking: false
+  savings: false
+  date: MyString
+  amount: 1
+  message: MyString
