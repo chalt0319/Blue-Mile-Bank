@@ -36,19 +36,7 @@ class AccountsController < ApplicationController
     @account = Account.find(params[:id])
     @bank = Bank.find_by(account_id: params[:id])
     @amount = params["amount"].to_i
-    @bank["checking"] += @amount
-    if @bank.save
-      t = @bank.updated_at
-      @time = t.strftime("%c")
-      @message = params["message"]
-      @history = History.new(account_id: @account.id, date: @time, amount: @amount, message: @message, checking: true, add: true)
-      # @bank.checking_history.push("+ $#{@amount} on #{@time}")
-      @bank.save
-      @history.save
-      redirect_to account_path(@account)
-    else
-      flash[:alert] = "Something's gone wrong... Please try again."
-    end
+    manage_money(@account, @bank, "checking", @amount, "+")
   end
 
   def add_savings
@@ -59,69 +47,21 @@ class AccountsController < ApplicationController
     @account = Account.find(params[:id])
     @bank = Bank.find_by(account_id: params[:id])
     @amount = params["amount"].to_i
-    @bank["savings"] += @amount
-    if @bank.save
-      t = @bank.updated_at
-      @time = t.strftime("%c")
-      @message = params["message"]
-      @history = History.new(account_id: @account.id, date: @time, amount: @amount, message: @message, savings: true, add: true)
-      # @bank.savings_history.push("+ $#{@amount} on #{@time}")
-      @bank.save
-      @history.save
-      redirect_to account_path(@account)
-    else
-      flash[:alert] = "Something's gone wrong... Please try again."
-    end
+    manage_money(@account, @bank, "savings", @amount, "+")
   end
 
   def sub_checking
     @account = Account.find(params[:id])
     @bank = Bank.find_by(account_id: params[:id])
     @amount = params["amount"].to_i
-    if @bank["checking"] >= @amount
-      @bank["checking"] -= @amount
-      if @bank.save
-        t = @bank.updated_at
-        @time = t.strftime("%c")
-        @message = params["message"]
-        @history = History.new(account_id: @account.id, date: @time, amount: @amount, message: @message, checking: true, add: false)
-        # @bank.checking_history.push("- $#{@amount} on #{@time}")
-        @bank.save
-        @history.save
-        redirect_to account_path(@account)
-      else
-        flash[:alert] = "Something's gone wrong... Please try again."
-        redirect_to account_path(@account)
-      end
-    else
-      flash[:alert] = "Something's gone wrong... Please try again."
-      redirect_to account_path(@account)
-    end
+    manage_money(@account, @bank, "checking", @amount, "-")
   end
 
   def sub_savings
     @account = Account.find(params[:id])
     @bank = Bank.find_by(account_id: params[:id])
     @amount = params["amount"].to_i
-    if @bank["savings"] >= @amount
-      @bank["savings"] -= @amount
-      if @bank.save
-        t = @bank.updated_at
-        @time = t.strftime("%c")
-        @message = params["message"]
-        @history = History.new(account_id: @account.id, date: @time, amount: @amount, message: @message, checking: false, add: false)
-        # @bank.savings_history.push("- $#{@amount} on #{@time}")
-        @bank.save
-        @history.save
-        redirect_to account_path(@account)
-      else
-        flash[:alert] = "Something's gone wrong... Please try again."
-        redirect_to account_path(@account)
-      end
-    else
-      flash[:alert] = "Something's gone wrong... Please try again."
-      redirect_to account_path(@account)
-    end
+    manage_money(@account, @bank, "savings", @amount, "-")
   end
 
   def checking_history
@@ -163,6 +103,45 @@ class AccountsController < ApplicationController
   def cannot_find_account
     flash[:alert] = "We cannot find your account in our system... Please try again."
     redirect_to login_path
+  end
+
+  def manage_money(account, bank, type, amount, add_sub)
+    if add_sub == "+"
+      bank[type] += @amount
+      if bank.save
+        t = bank.updated_at
+        @time = t.strftime("%c")
+        @message = params["message"]
+        @history = History.new(account_id: account.id, date: @time, amount: amount, message: @message, add: true)
+        @history[type] = true
+        bank.save
+        @history.save
+        redirect_to account_path(account)
+      else
+        flash[:alert] = "Something's gone wrong... Please try again."
+        redirect_to account_path(account)
+      end
+    else
+      if bank[type] >= @amount
+        bank[type] -= @amount
+        if bank.save
+          t = bank.updated_at
+          @time = t.strftime("%c")
+          @message = params["message"]
+          @history = History.new(account_id: account.id, date: @time, amount: amount, message: @message, add: false)
+          @history[type] = true
+          bank.save
+          @history.save
+          redirect_to account_path(account)
+        else
+          flash[:alert] = "Something's gone wrong... Please try again."
+          redirect_to account_path(account)
+        end
+      else
+        flash[:alert] = "Insufficient Funds. Please try again."
+        redirect_to account_path(account)
+      end
+    end
   end
 
 end
