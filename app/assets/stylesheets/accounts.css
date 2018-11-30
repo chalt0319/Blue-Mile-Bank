@@ -81,6 +81,8 @@ body {
 }
 
 .history-header {
+  width: 300px;
+  padding-left: 10px;
   background-color: #a6a6a6;
 }
 
@@ -106,4 +108,9 @@ a {
 
 .show-link:hover {
   color: purple;
+}
+
+.back {
+  position: relative;
+  top: 40px;
 }

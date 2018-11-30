@@ -25,8 +25,6 @@ ActiveRecord::Schema.define(version: 2018_11_28_174418) do
     t.integer "savings", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "checking_history"
-    t.text "savings_history"
   end
 
   create_table "histories", force: :cascade do |t|

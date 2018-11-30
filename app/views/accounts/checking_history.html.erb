@@ -1,10 +1,10 @@
 <h1>Checking Account Transaction History</h1>
 
 <table>
-  <tr class="history-header">
-    <th>Date</th>
-    <th>Message</th>
-    <th>Amount</th>
+  <tr>
+    <th class="history-header">Date</th>
+    <th class="history-header">Message</th>
+    <th class="history-header">Amount</th>
   </tr>
 
     <%@histories.each do |transaction|%>
@@ -22,5 +22,6 @@
       </tr>
       <%end%>
     <%end%>
-
 </table>
+
+<a class="back" href="/accounts/<%=@account.id%>">Back to Profile Page</a>
