@@ -1,20 +1,26 @@
 <h1>Checking Account Transaction History</h1>
 
 <table>
-  <tr>
+  <tr class="history-header">
     <th>Date</th>
     <th>Message</th>
     <th>Amount</th>
   </tr>
 
     <%@histories.each do |transaction|%>
-      <%if transaction.checking%>
-        <tr class="history-tr">
-          <td class="history-td"><%=transaction.date%></td>
-          <td class="history-td"><%=transaction.message%></td>
-          <td class="history-td"><%=transaction.amount%></td>
-        </tr>
-        <%end%>
+    <%if transaction.checking && transaction.add%>
+      <tr>
+        <td class="history-td"><%=transaction.date%></td>
+        <td class="history-td"><%=transaction.message%></td>
+        <td class="history-td green">$<%=transaction.amount%></td>
+      </tr>
+      <%else%>
+      <tr>
+        <td class="history-td"><%=transaction.date%></td>
+        <td class="history-td"><%=transaction.message%></td>
+        <td class="history-td red">$<%=transaction.amount%></td>
+      </tr>
+      <%end%>
     <%end%>
 
 </table>
