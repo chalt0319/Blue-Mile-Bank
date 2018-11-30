@@ -7,10 +7,10 @@
     Balance: $<%=@bank.checking%>
 
   </div>
-  <div class="history-link"><a href="/checking_history/<%=@account.id%>">View Transactions</a></div>
+  <div class="history-link-div"><a class="show-link" href="/checking_history/<%=@account.id%>">View Transactions</a></div>
 
   <div class="manage">
-    <a href="/add/<%=@account.id%>/checking">Manage Money</a>
+    <a class="show-link" href="/add/<%=@account.id%>/checking">Manage Money</a>
   </div>
 </div>
 
@@ -20,8 +20,8 @@
     Balance: $<%=@bank.savings%>
 
   </div>
-  <div class="history-link"><a href="/savings_history/<%=@account.id%>">View Transactions</a></div>
+  <div class="history-link-div"><a class="show-link" href="/savings_history/<%=@account.id%>">View Transactions</a></div>
   <div class="manage">
-    <a href="/add/<%=@account.id%>/savings">Manage Money</a>
+    <a class="show-link" href="/add/<%=@account.id%>/savings">Manage Money</a>
   </div>
 </div>

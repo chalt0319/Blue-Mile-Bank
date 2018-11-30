@@ -28,8 +28,12 @@ body {
   color: #005c99;
 }
 
+.links:visited {
+  color: #005c99;
+}
+
 .links:hover {
-  color: black;
+  color: purple;
 }
 
 .account-box {
@@ -68,7 +72,7 @@ body {
   background-color: #d9d9d9;
 }
 
-.history-link {
+.history-link-div {
   position: relative;
   bottom: 20px;
   text-align: right;
@@ -86,4 +90,20 @@ body {
 
 .red {
   color: red;
+}
+
+a {
+  text-decoration: none;
+}
+
+.show-link {
+  color: blue;
+}
+
+.show-link:visited {
+  color: blue;
+}
+
+.show-link:hover {
+  color: purple;
 }
