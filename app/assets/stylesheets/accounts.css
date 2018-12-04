@@ -22,11 +22,13 @@ body {
   font-family: Georgia, serif;
   width: 1300px;
   margin: 0 auto;
+  height: 100vh;
+  padding-left: 12.5px;
 }
 
 #body {
   width: 1300px;
-  background: grey;
+  background: #f2f2f2;
   height: 100%;
 }
 
@@ -45,25 +47,33 @@ body {
 }
 
 .account-box {
-  background-color: #d9d9d9;
+  background-color: #cccccc;
   padding-top: 3px;
-  padding-left: 1.5%;
-  padding-right: 1.5%;
+  /* padding-left: 1.5%;
+  padding-right: 1.5%; */
   padding-bottom: 20px;
   margin-bottom: 10px;
-  float: left;
-  width: 46.2%;
-}
+  /* float: left;
+  width: 46.2%; */
 
+  padding-left: 12.5px;
+  padding-right: 12.5px;
+  margin-left: 12.5px;
+  margin-right: 12.5px;
+  float: left;
+  width: 600px;
+}
+/*
 .account-box.left {
   margin-right: 1%;
-}
+} */
 
 .account-header {
   text-align: center;
   background-color: #a6a6a6;
   padding-top: 3px;
   padding-bottom: 3px;
+  padding-right: 12.5px; /* padding to counteract the h3 padding */
 }
 
 .manage {
@@ -131,7 +141,10 @@ a {
 footer {
   position: absolute;
   bottom: 5px;
-  /* left: 15px; */
-  /* background: blue;
-  width: 100%; */
+  border-top: 1px solid #a6a6a6;
+  width: inherit;
+}
+
+h1, h2, h3, h4, form, table, a {
+  padding-left: 12.5px
 }
