@@ -8,23 +8,27 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <header>
-    <a class="links" href="<%=root_path%>">Home</a>
-    <%if logged_in?%>
-    <a class="links" href="<%=current_user_path%>"><%=current_user%></a>
-    <a class="links" href="<%=logout_path%>">Logout</a>
-    <%else %>
-      <a class="links" href="<%=login_path%>">Login</a>
-      <a class="links" href="<%=new_account_path%>">Sign Up</a>
-    <%end%>
-    <span id="title">Blue Mile Bank</span>
-  </header>
-  <body>
 
-    <% flash.each do |name, msg| -%>
-       <%= content_tag :div, msg, class: name %>
-    <% end -%>
-    <%= yield %>
+  <body>
+    <div id="body">
+      <header>
+        <a class="links" href="<%=root_path%>">Home</a>
+        <%if logged_in?%>
+        <a class="links" href="<%=current_user_path%>"><%=current_user%></a>
+        <a class="links" href="<%=logout_path%>">Logout</a>
+        <%else %>
+          <a class="links" href="<%=login_path%>">Login</a>
+          <a class="links" href="<%=new_account_path%>">Sign Up</a>
+        <%end%>
+        <span id="title">Blue Mile Bank</span>
+      </header>
+
+      <% flash.each do |name, msg| -%>
+         <%= content_tag :div, msg, class: name %>
+      <% end -%>
+      <%= yield %>
+      <footer>2018 Blue Mile Bank</footer>
+    </div>
   </body>
   <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script> -->
   <script
