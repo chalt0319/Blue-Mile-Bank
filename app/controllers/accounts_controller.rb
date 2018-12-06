@@ -29,6 +29,7 @@ class AccountsController < ApplicationController
   end
 
   def add_checking
+    @account = Account.find(params[:id])
     render 'checking'
   end
 
@@ -40,6 +41,7 @@ class AccountsController < ApplicationController
   end
 
   def add_savings
+    @account = Account.find(params[:id])
     render 'savings'
   end
 
