@@ -8,15 +8,14 @@ Rails.application.routes.draw do
   post '/login' => "accounts#create"
   get '/logout' => 'accounts#logout'
 
-  get '/add/:id/checking' => 'accounts#add_checking'
-  post '/add_checking/:id' => 'accounts#checking', :as => :add_checking
+  get '/manage/:id/checking' => 'accounts#checking'  # show page to manage money
+  get '/manage/:id/savings' => 'accounts#savings'  # show page to manage money
 
-  get '/add/:id/savings' => 'accounts#add_savings'
-  post '/add_savings/:id' => 'accounts#savings', :as => :add_savings
+  post '/add_checking/:id' => 'accounts#add_checking', :as => :add_checking  # submit form to add money
+  post '/add_savings/:id' => 'accounts#add_savings', :as => :add_savings  # submit form to add money
 
-  post '/sub_checking/:id' => 'accounts#sub_checking', :as => :sub_checking
-
-  post '/sub_savings/:id' => 'accounts#sub_savings', :as => :sub_savings
+  post '/sub_checking/:id' => 'accounts#sub_checking', :as => :sub_checking # submit form to sub money
+  post '/sub_savings/:id' => 'accounts#sub_savings', :as => :sub_savings # submit form to sub money
 
   get '/checking_history/:id' => 'accounts#checking_history', :as => :checking_history
   get '/savings_history/:id' => 'accounts#savings_history', :as => :savings_history

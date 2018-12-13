@@ -5,7 +5,7 @@ class AccountsController < ApplicationController
   end
 
   def create
-    if params[:account]
+    if params[:account]  # if the 'create new account' form has been filled out
       @account = Account.new(account_params)
       if @account.save
         @bank = Bank.new(account_id: @account.id)
@@ -15,7 +15,7 @@ class AccountsController < ApplicationController
         flash[:alert] = "Something's gone wrong... Please try again."
         redirect_to '/new'
       end
-    else
+    else  # if the 'sign in' form has been filled out
       if @account = Account.find_by(name: params[:name])
         if @account.authenticate(params[:password])
           set_session_id
@@ -28,54 +28,53 @@ class AccountsController < ApplicationController
     end
   end
 
-  def add_checking
+  def checking  # show page to manage money to checking account
     @account = Account.find(params[:id])
     render 'checking'
   end
 
-  def checking
+  def savings  # show page to manage money to savings account
+    @account = Account.find(params[:id])
+    render 'savings'
+  end
+
+  def add_checking  # add to checking account, then redirect to show page
     @account = Account.find(params[:id])
     @bank = Bank.find_by(account_id: params[:id])
     @amount = params["amount"].to_i
     manage_money(@account, @bank, "checking", @amount, "+")
   end
 
-  def add_savings
-    @account = Account.find(params[:id])
-    render 'savings'
-  end
-
-  def savings
+  def add_savings  # add to savings account, then redirect to show page
     @account = Account.find(params[:id])
     @bank = Bank.find_by(account_id: params[:id])
     @amount = params["amount"].to_i
     manage_money(@account, @bank, "savings", @amount, "+")
   end
 
-  def sub_checking
+  def sub_checking  # sub to checking account, then redirect to show page
     @account = Account.find(params[:id])
     @bank = Bank.find_by(account_id: params[:id])
     @amount = params["amount"].to_i
     manage_money(@account, @bank, "checking", @amount, "-")
   end
 
-  def sub_savings
+  def sub_savings  # sub to savings account, then redirect to show page
     @account = Account.find(params[:id])
     @bank = Bank.find_by(account_id: params[:id])
     @amount = params["amount"].to_i
     manage_money(@account, @bank, "savings", @amount, "-")
   end
 
-  def checking_history
+  def checking_history  # show transaction history
     @account = Account.find(params[:id])
     @histories = @account.histories
   end
 
-  def savings_history
+  def savings_history  # show transaction history
     @account = Account.find(params[:id])
     @histories = @account.histories
   end
-
 
   def new
     @account = Account.new
