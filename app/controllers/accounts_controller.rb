@@ -111,7 +111,7 @@ class AccountsController < ApplicationController
       bank[type] += @amount
       if bank.save
         t = bank.updated_at
-        @time = t.strftime("%c")
+        @time = t.strftime("%c")  # translate the time into more readable syntax
         @message = params["message"]
         @history = History.new(account_id: account.id, date: @time, amount: amount, message: @message, add: true)
         @history[type] = true
@@ -124,10 +124,11 @@ class AccountsController < ApplicationController
       end
     else
       if bank[type] >= @amount
+        # if the bank account has more money than the requested amount to be subtracted
         bank[type] -= @amount
         if bank.save
           t = bank.updated_at
-          @time = t.strftime("%c")
+          @time = t.strftime("%c")  # translate the time into more readable syntax
           @message = params["message"]
           @history = History.new(account_id: account.id, date: @time, amount: amount, message: @message, add: false)
           @history[type] = true
